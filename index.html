@@ -23,10 +23,10 @@
   <meta name="ICBM" content="-26.3044, -48.8487" />
 
   <!-- ═══ FAVICON / PWA ═══ -->
-  <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="logo.png" />
-  <link rel="shortcut icon" href="logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="logo-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="logo-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="logo-icon.png" />
+  <link rel="shortcut icon" href="logo-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
   <!-- ═══ OPEN GRAPH ═══ -->
@@ -164,7 +164,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="dns-prefetch" href="https://wa.me" />
   <link rel="dns-prefetch" href="https://formsubmit.co" />
-  <link rel="preload" as="image" href="logo.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="logo-icon.png" fetchpriority="high" />
 
   <!-- ═══ ANALYTICS — Google Analytics 4 (GA4) ═══
        INSTRUÇÕES:
@@ -195,6 +195,22 @@
       anonymize_ip: true,
       cookie_flags: 'SameSite=None;Secure'
     });
+
+    // ─── REGISTRAR LISTENERS NO DOM (substitui inline handlers, mais robusto) ───
+    document.addEventListener('DOMContentLoaded', function() {
+      // Form principal
+      var leadForm = document.getElementById('lead-form');
+      if (leadForm) {
+        leadForm.addEventListener('submit', handleForm);
+      }
+
+      // Cookie banner
+      var btnAccept = document.getElementById('cookie-accept');
+      var btnDecline = document.getElementById('cookie-decline');
+      if (btnAccept) btnAccept.addEventListener('click', function(){ setCookieConsent('accepted'); });
+      if (btnDecline) btnDecline.addEventListener('click', function(){ setCookieConsent('declined'); });
+    });
+
   </script>
   -->
 
@@ -906,7 +922,7 @@
   <!-- ─── NAVBAR ─── -->
   <nav class="site-nav" role="navigation" aria-label="Menu principal">
     <a href="#" class="nav-logo" aria-label="Level Up Soluções - Página inicial">
-      <img src="logo.png" class="logo-img-nav" alt="Logo Level Up Soluções" width="42" height="42" fetchpriority="high" decoding="async" />
+      <img src="logo-icon.png" class="logo-img-nav" alt="Logo Level Up Soluções" width="42" height="42" fetchpriority="high" decoding="async" />
       <div class="nav-logo-text">
         <span>Level Up</span>
         <span>Soluções</span>
@@ -1000,7 +1016,6 @@
           id="lead-form"
           action="https://formsubmit.co/ajax/valdemarejr@gmail.com"
           method="POST"
-          onsubmit="handleForm(event)"
           novalidate
         >
           <input type="hidden" name="_subject" value="[Level Up Sales] Novo lead pelo site" />
@@ -1117,7 +1132,7 @@
     <div class="section-inner">
       <div class="sobre-inner">
         <div class="sobre-visual">
-          <img src="logo.png" alt="Logotipo Level Up Soluções - três setas ascendentes em azul índigo" class="sobre-logo-big" width="140" height="140" loading="lazy" decoding="async" />
+          <img src="logo-icon.png" alt="Logotipo Level Up Soluções - três setas ascendentes em azul índigo" class="sobre-logo-big" width="140" height="140" loading="lazy" decoding="async" />
           <div class="sobre-name">
             <h3>Level Up Soluções</h3>
             <p>Consultoria Estratégica de Vendas</p>
@@ -1463,7 +1478,7 @@
     <div class="footer-main">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="logo.png" class="logo-img-footer" alt="Logo Level Up Soluções" width="40" height="40" loading="lazy" decoding="async" />
+          <img src="logo-icon.png" class="logo-img-footer" alt="Logo Level Up Soluções" width="40" height="40" loading="lazy" decoding="async" />
           <div>
             <span style="font-weight:800;font-size:14px;color:var(--text-1);display:block">Level Up</span>
             <span style="font-weight:600;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.14em">Soluções</span>
@@ -1522,8 +1537,8 @@
       Nenhum dado é compartilhado ou vendido a terceiros.
     </p>
     <div class="cookie-actions">
-      <button class="cookie-btn cookie-btn-decline" onclick="setCookieConsent('declined')" aria-label="Recusar cookies não essenciais">Apenas essenciais</button>
-      <button class="cookie-btn cookie-btn-accept" onclick="setCookieConsent('accepted')" aria-label="Aceitar todos os cookies">Aceitar e continuar</button>
+      <button class="cookie-btn cookie-btn-decline" id="cookie-decline" aria-label="Recusar cookies não essenciais">Apenas essenciais</button>
+      <button class="cookie-btn cookie-btn-accept" id="cookie-accept" aria-label="Aceitar todos os cookies">Aceitar e continuar</button>
     </div>
   </div>
 
@@ -1759,4 +1774,4 @@
     // ─── NAVBAR SCROLL ───
     (function() {
       var nav = document.querySelector('nav');
-      window.addEventListener('scroll', function
+      window.addEventListener('scroll', fun

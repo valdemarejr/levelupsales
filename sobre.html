@@ -14,9 +14,9 @@
   <link rel="canonical" href="https://www.levelupsales.com.br/sobre.html" />
 
   <!-- ═══ FAVICON ═══ -->
-  <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="logo-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="logo-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="logo-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
   <!-- ═══ OPEN GRAPH ═══ -->
@@ -97,7 +97,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="dns-prefetch" href="https://wa.me" />
-  <link rel="preload" as="image" href="logo.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="logo-icon.png" fetchpriority="high" />
 
   <!-- ═══ GA4 PLACEHOLDER (descomente quando tiver o ID) ═══ -->
   <!--
@@ -312,7 +312,7 @@
   <!-- NAVBAR -->
   <nav class="site-nav" role="navigation" aria-label="Menu principal">
     <a href="index.html" class="nav-logo" aria-label="Level Up Soluções - Página inicial">
-      <img src="logo.png" class="logo-img-nav" alt="Logo Level Up Soluções" width="42" height="42" fetchpriority="high" decoding="async" />
+      <img src="logo-icon.png" class="logo-img-nav" alt="Logo Level Up Soluções" width="42" height="42" fetchpriority="high" decoding="async" />
       <div class="nav-logo-text">
         <span>Level Up</span>
         <span>Soluções</span>
@@ -360,7 +360,7 @@
       <div class="quem-grid">
         <div class="quem-photo-wrap">
           <div style="background:#fff;border-radius:var(--radius-lg);padding:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(50,50,160,0.2);border:1px solid var(--brand-border);">
-            <img src="logo.png" alt="Logotipo Level Up Soluções" width="220" height="220" style="width:100%;height:auto;display:block;" loading="eager" decoding="async" />
+            <img src="logo-icon.png" alt="Logotipo Level Up Soluções" width="220" height="220" style="width:100%;height:auto;display:block;" loading="eager" decoding="async" />
           </div>
           <div class="quem-meta">
             <div class="quem-meta-item">
@@ -517,7 +517,7 @@
     <div class="footer-main">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="logo.png" class="logo-img-footer" alt="Logo Level Up Soluções" width="40" height="40" loading="lazy" decoding="async" />
+          <img src="logo-icon.png" class="logo-img-footer" alt="Logo Level Up Soluções" width="40" height="40" loading="lazy" decoding="async" />
           <div>
             <span style="font-weight:800;font-size:14px;color:var(--text-1);display:block">Level Up</span>
             <span style="font-weight:600;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.14em">Soluções</span>
@@ -600,10 +600,4 @@
     (function() {
       var nav = document.querySelector('nav.site-nav');
       window.addEventListener('scroll', function() {
-        nav.style.background = window.scrollY > 40 ? 'rgba(6,6,15,0.98)' : 'rgba(6,6,15,0.92)';
-      }, { passive: true });
-    })();
-  </script>
-</body>
-</html>
- 
+        nav.style.background = window.scrollY
