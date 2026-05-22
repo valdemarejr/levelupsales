@@ -1,0 +1,35 @@
+# robots.txt — Level Up Soluções
+# https://www.levelupsales.com.br/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+
+# Bloqueia bots de scraping conhecidos e LLMs (opcional — remova se quiser indexação por IA)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Crawl-delay padrão (segundos)
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.levelupsales.com.br/sitemap.xml
