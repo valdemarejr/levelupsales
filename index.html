@@ -122,7 +122,8 @@
           "SPIN Selling", "JOLT Effect", "Venda Consultiva",
           "Inbound Sales", "Outbound Sales", "Sales Enablement",
           "Gestão de Canais", "Geração de Demanda", "Pipeline Management",
-          "SaaS Sales", "Franquias", "Vendas B2B", "Vendas B2C"
+          "SaaS Sales", "Franquias", "Vendas B2B", "Vendas B2C",
+          "Sales Performance Management", "Sales KPIs"
         ],
         "employee": { "@id": "https://www.levelupsales.com.br/#person" },
         "founder": { "@id": "https://www.levelupsales.com.br/#person" },
@@ -658,6 +659,56 @@
     }
     .step-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
     .step-card p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+    /* ─── 6 Ps (DIAGNÓSTICO POR VETORES) ─── */
+    .ps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .p-card {
+      display: flex;
+      align-items: stretch;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .p-card:hover { border-color: var(--brand-border); transform: translateY(-2px); }
+    .p-badge {
+      flex-shrink: 0;
+      width: 64px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.02em;
+    }
+    .p-content { padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .p-content h3 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-1);
+    }
+    .p-content p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin: 0; }
+    .met-subhead {
+      text-align: center;
+      margin: 0 0 32px;
+    }
+    .met-subhead .section-label { margin-bottom: 12px; }
+    .met-subhead h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
 
     /* ─── SERVIÇOS ─── */
     .servicos-section { background: var(--bg-0); border-top: 1px solid var(--border); }
@@ -1220,7 +1271,7 @@
             A Level Up Soluções nasceu para levar as melhores práticas de vendas do mercado para empresas em qualquer estágio: da PME que quer profissionalizar o comercial à operação estabelecida que precisa refinar performance em canais e capacitar o time.
           </p>
           <p>
-            Acumulamos 15+ anos atravessando os desafios reais de times de vendas em SaaS, indústria, serviços B2B, franquia, educação, produtos e agronegócio. A leitura que ficou: resultado consistente vem da combinação de processo, pitch, pessoas, produto e promoção (marketing), com método e disciplina aplicados em campo.
+            Acumulamos 15+ anos atravessando os desafios reais de times de vendas em SaaS, indústria, serviços B2B, franquia, educação, produtos e agronegócio. A leitura que ficou: resultado consistente vem da combinação dos 6 Ps — processo, pitch, pessoas, produto, promoção (marketing) e performance — rodando juntos, com método e disciplina aplicados em campo.
           </p>
           <p>
             Aqui você não recebe um relatório no fim do mês. Você tem a Level Up dentro da operação toda semana, ajustando, treinando e evoluindo com o time, em qualquer contexto: B2B, B2C, indústria ou SaaS.
@@ -1249,16 +1300,68 @@
     <div class="section-inner">
       <div class="metodologia-header">
         <span class="section-label">Como funciona</span>
-        <h2 id="met-title">Metodologia que move<br />o ponteiro de verdade</h2>
+        <h2 id="met-title">Os 6 Ps que sustentam<br />uma operação de vendas</h2>
         <p class="section-desc">
-          Um ciclo de diagnóstico, execução e ajuste. Foco em comportamento e resultado, não em teoria.
+          Diagnosticamos por seis vetores. Cada um isolado não sustenta resultado por muito tempo; rodando juntos é o que vira performance consistente.
         </p>
       </div>
+
+      <!-- 6 Ps GRID -->
+      <div class="ps-grid" role="list" aria-label="Os 6 Ps da metodologia Level Up">
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Processo</h3>
+            <p>Funil, etapas, cadência e rotinas que fazem a operação rodar com previsibilidade.</p>
+          </div>
+        </div>
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Pitch</h3>
+            <p>Como vendemos: discurso, postura, materiais e gestão de objeções.</p>
+          </div>
+        </div>
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Pessoas</h3>
+            <p>Time, capacitação, escuta e compartilhamento. Cultura comercial saudável.</p>
+          </div>
+        </div>
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Produto</h3>
+            <p>O que se vende e como gera valor percebido para o cliente certo.</p>
+          </div>
+        </div>
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Promoção</h3>
+            <p>Frente de marketing: orgânico, mídia, conteúdo e SEO para gerar demanda.</p>
+          </div>
+        </div>
+        <div class="p-card" role="listitem">
+          <div class="p-badge" aria-hidden="true">P</div>
+          <div class="p-content">
+            <h3>Performance</h3>
+            <p>Indicadores de esforço e resultado: como medir, melhorar e garantir o ritmo do time semana a semana.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="met-subhead">
+        <span class="section-label">Como aplicamos</span>
+        <h3>Um ciclo de diagnóstico, execução e ajuste — dentro da operação.</h3>
+      </div>
+
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-number">01</div>
           <h3>Diagnóstico comercial</h3>
-          <p>Mapeamento completo da operação: funil, pitch, conversões por etapa, perfil do time e maturidade dos processos. O diagnóstico considera tanto empresas com indicadores formados quanto aquelas que têm operação funcionando mas ainda sem dados estruturados.</p>
+          <p>Mapeamento completo da operação pelos 6 Ps: funil, pitch, time, produto, geração de demanda e indicadores de performance. Vale tanto para empresas com indicadores formados quanto para operações ainda sem dados estruturados.</p>
         </div>
         <div class="step-card">
           <div class="step-number">02</div>
@@ -1459,7 +1562,7 @@
     <div class="section-inner">
       <span class="section-label">Cases</span>
       <h2 id="dep-title">O que dizem nossos<br />clientes</h2>
-      <p class="section-desc">Resultados reais de empresas que escolheram evoluir o time de vendas com método.</p>
+      <p class="section-desc">Resultados de empresas que escolheram evoluir o time de vendas com método. Identidade preservada por acordo de confidencialidade.</p>
       <div class="depoimentos-grid">
         <blockquote class="depo-card">
           <div class="depo-stars" aria-label="5 estrelas">
@@ -1471,10 +1574,10 @@
           </div>
           <p class="depo-text">"Em 8 semanas de acompanhamento, nossa taxa de conversão no funil aumentou significativamente. A Level Up entrou na operação de verdade, não ficou só no relatório."</p>
           <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">PC</div>
+            <div class="depo-avatar" aria-hidden="true">LU</div>
             <div class="depo-info">
-              <h4>Passare Controle de Pragas</h4>
-              <p>Time Comercial &mdash; Joinville, SC</p>
+              <h4>Gestor Comercial</h4>
+              <p>Serviços B2B &mdash; Santa Catarina</p>
             </div>
           </footer>
         </blockquote>
@@ -1488,10 +1591,10 @@
           </div>
           <p class="depo-text">"O diferencial é o acompanhamento individual. Cada vendedor evoluiu de forma diferente, com plano próprio. Isso é o que faz a diferença no dia a dia da operação."</p>
           <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">CB</div>
+            <div class="depo-avatar" aria-hidden="true">LU</div>
             <div class="depo-info">
-              <h4>Cliente B2B</h4>
-              <p>Segmento SaaS &mdash; Brasil</p>
+              <h4>Head de Vendas</h4>
+              <p>SaaS B2B &mdash; Brasil</p>
             </div>
           </footer>
         </blockquote>
@@ -1505,10 +1608,10 @@
           </div>
           <p class="depo-text">"Finalmente um consultor que fala a língua do meu time. Metodologia prática, sem enrolação. E os números provam isso toda semana."</p>
           <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">CF</div>
+            <div class="depo-avatar" aria-hidden="true">LU</div>
             <div class="depo-info">
-              <h4>Cliente Franqueadora</h4>
-              <p>Sul do Brasil</p>
+              <h4>Diretor Comercial</h4>
+              <p>Franqueadora &mdash; Sul do Brasil</p>
             </div>
           </footer>
         </blockquote>
