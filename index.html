@@ -197,19 +197,62 @@
     });
 
     // ─── REGISTRAR LISTENERS NO DOM (substitui inline handlers, mais robusto) ───
-    document.addEventListener('DOMContentLoaded', function() {
-      // Form principal
+    function registerListeners() {
+      // Form principal — usa listener no submit do form
       var leadForm = document.getElementById('lead-form');
-      if (leadForm) {
+      if (leadForm && !leadForm.dataset.listenerSet) {
         leadForm.addEventListener('submit', handleForm);
+        // Backup: também escuta clique no botão de envio
+        var submitBtn = document.getElementById('form-submit');
+        if (submitBtn) {
+          submitBtn.addEventListener('click', function(ev){
+            ev.preventDefault();
+            handleForm(ev);
+          });
+        }
+        leadForm.dataset.listenerSet = '1';
       }
 
       // Cookie banner
       var btnAccept = document.getElementById('cookie-accept');
       var btnDecline = document.getElementById('cookie-decline');
-      if (btnAccept) btnAccept.addEventListener('click', function(){ setCookieConsent('accepted'); });
-      if (btnDecline) btnDecline.addEventListener('click', function(){ setCookieConsent('declined'); });
-    });
+      if (btnAccept && !btnAccept.dataset.listenerSet) {
+        btnAccept.addEventListener('click', function(){ setCookieConsent('accepted'); });
+        btnAccept.dataset.listenerSet = '1';
+      }
+      if (btnDecline && !btnDecline.dataset.listenerSet) {
+        btnDecline.addEventListener('click', function(){ setCookieConsent('declined'); });
+        btnDecline.dataset.listenerSet = '1';
+      }
+
+      // Modal de sucesso
+      var sucClose = document.getElementById('success-close');
+      var sucStay = document.getElementById('success-stay');
+      if (sucClose && !sucClose.dataset.listenerSet) {
+        sucClose.addEventListener('click', closeSuccessModal);
+        sucClose.dataset.listenerSet = '1';
+      }
+      if (sucStay && !sucStay.dataset.listenerSet) {
+        sucStay.addEventListener('click', closeSuccessModal);
+        sucStay.dataset.listenerSet = '1';
+      }
+      var sucModal = document.getElementById('success-modal');
+      if (sucModal && !sucModal.dataset.listenerSet) {
+        sucModal.addEventListener('click', function(ev){
+          if (ev.target === sucModal) closeSuccessModal();
+        });
+        sucModal.dataset.listenerSet = '1';
+      }
+    }
+
+    // Registra tanto no DOMContentLoaded quanto agora (caso o DOM já esteja pronto)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', registerListeners);
+    } else {
+      registerListeners();
+    }
+    // Backup adicional: registra também depois de window.load
+    window.addEventListener('load', registerListeners);
 
   </script>
   -->
@@ -1014,9 +1057,8 @@
         <form
           class="hero-card-form"
           id="lead-form"
-          action="https://formsubmit.co/ajax/valdemarejr@gmail.com"
-          method="POST"
           novalidate
+          data-endpoint="https://formsubmit.co/ajax/valdemarejr@gmail.com"
         >
           <input type="hidden" name="_subject" value="[Level Up Sales] Novo lead pelo site" />
           <input type="hidden" name="_template" value="table" />
@@ -1645,8 +1687,10 @@
     }
 
     async function handleForm(e) {
-      e.preventDefault();
-      const form = e.target;
+      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+      const form = document.getElementById('lead-form');
+      const endpoint = form.getAttribute('data-endpoint');
       const name    = sanitize(document.getElementById('form-name').value.trim());
       const email   = sanitize(document.getElementById('form-email').value.trim());
       const phone   = sanitize(document.getElementById('form-phone').value.trim());
@@ -1655,24 +1699,23 @@
       const consent = document.getElementById('form-consent').checked;
       const honeypot = (form.elements['_honey'] || {}).value || '';
 
-      // Honeypot: bot preencheu o campo invisível → descarta silenciosamente
-      if (honeypot) { return; }
+      if (honeypot) { return false; }
 
       if (!name || !email || !phone || !company || !segment) {
         setFormStatus('Por favor, preencha todos os campos obrigatórios.', 'error');
-        return;
+        return false;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         setFormStatus('Por favor, informe um e-mail válido.', 'error');
-        return;
+        return false;
       }
       if (phone.replace(/\D/g,'').length < 10) {
         setFormStatus('Por favor, informe um WhatsApp válido com DDD.', 'error');
-        return;
+        return false;
       }
       if (!consent) {
         setFormStatus('Confirme o aceite da Política de Privacidade para prosseguir.', 'error');
-        return;
+        return false;
       }
 
       const btn = document.getElementById('form-submit');
@@ -1682,10 +1725,10 @@
 
       track('form_submit_started', { form_id: 'lead-form', segmento: segment });
 
-      // 1) Envia via Formsubmit (gera email para Valdemar)
+      // Envia via Formsubmit (gera email para Valdemar)
       let emailEnviado = false;
       try {
-        const resp = await fetch(form.action, {
+        const resp = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
           body: new FormData(form)
@@ -1695,7 +1738,7 @@
         emailEnviado = false;
       }
 
-      // 2) Sempre abre o WhatsApp como canal redundante (não perde o lead)
+      // Prepara URL do WhatsApp pro botão dentro do modal
       const msg = encodeURIComponent(
         'Olá Level Up! Vim pelo site.\n\n' +
         '• Nome: ' + name + '\n' +
@@ -1706,10 +1749,11 @@
         'Gostaria de agendar o diagnóstico gratuito de 30 minutos.'
       );
       const waUrl = 'https://wa.me/5547988421026?text=' + msg;
-      const popup = window.open(waUrl, '_blank', 'noopener,noreferrer');
-      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-        // Popup bloqueado → fallback: redirect total
-        setTimeout(function(){ window.location.href = waUrl; }, 600);
+      var waLink = document.getElementById('success-whatsapp');
+      if (waLink) {
+        waLink.setAttribute('href', waUrl);
+        waLink.setAttribute('target', '_blank');
+        waLink.setAttribute('rel', 'noopener noreferrer');
       }
 
       track('form_submit_completed', {
@@ -1720,12 +1764,34 @@
 
       btn.disabled = false;
       btn.textContent = 'Quero conversar sobre meu time \u2192';
+
       if (emailEnviado) {
-        setFormStatus('✓ Recebido! Em até 24h úteis retornaremos o contato.', 'success');
+        setFormStatus('✓ Mensagem enviada com sucesso.', 'success');
         form.reset();
+        openSuccessModal();
       } else {
-        setFormStatus('Abrimos o WhatsApp para você falar direto com a Level Up.', 'success');
+        setFormStatus('Não conseguimos enviar agora. Tente direto pelo WhatsApp abaixo.', 'error');
+        // Fallback: abre WhatsApp pra não perder o lead
+        var popup = window.open(waUrl, '_blank', 'noopener,noreferrer');
+        if (!popup) { setTimeout(function(){ window.location.href = waUrl; }, 800); }
       }
+      return false;
+    }
+
+    // ─── MODAL DE SUCESSO ───
+    function openSuccessModal() {
+      var m = document.getElementById('success-modal');
+      if (!m) return;
+      m.classList.add('open');
+      m.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSuccessModal() {
+      var m = document.getElementById('success-modal');
+      if (!m) return;
+      m.classList.remove('open');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
     }
 
     // ─── TRACKING DE CLIQUES (WhatsApp, telefone, email) ───
