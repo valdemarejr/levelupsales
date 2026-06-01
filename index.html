@@ -115,7 +115,8 @@
           "itemListElement": [
             { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://www.levelupsales.com.br/#service-diagnostico", "name": "Diagnóstico Comercial", "serviceType": "Diagnóstico de operação comercial", "provider": { "@id": "https://www.levelupsales.com.br/#business" }, "description": "Análise profunda da operação comercial — processo, indicadores, equipe e discurso — para mapear gargalos e definir prioridades.", "areaServed": { "@type": "Country", "name": "Brasil" } } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://www.levelupsales.com.br/#service-acompanhamento", "name": "Acompanhamento Comercial Contínuo", "serviceType": "Acompanhamento semanal de equipe de vendas", "provider": { "@id": "https://www.levelupsales.com.br/#business" }, "description": "Atuação semanal dentro da operação com a equipe de vendas e o gestor comercial. Ciclos de 8 a 12 semanas.", "areaServed": { "@type": "Country", "name": "Brasil" } } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://www.levelupsales.com.br/#service-treinamento", "name": "Treinamento de Time de Vendas", "serviceType": "Capacitação SPIN Selling e JOLT", "provider": { "@id": "https://www.levelupsales.com.br/#business" }, "description": "Capacitação com SPIN Selling e JOLT adaptada ao segmento, público e posicionamento da empresa.", "areaServed": { "@type": "Country", "name": "Brasil" } } }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://www.levelupsales.com.br/#service-treinamento", "name": "Treinamento de Time de Vendas", "serviceType": "Capacitação SPIN Selling e JOLT", "provider": { "@id": "https://www.levelupsales.com.br/#business" }, "description": "Capacitação com SPIN Selling e JOLT adaptada ao segmento, público e posicionamento da empresa.", "areaServed": { "@type": "Country", "name": "Brasil" } } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://www.levelupsales.com.br/#service-bi", "name": "Inteligência Comercial 360 — KPIs, Dashboards e IA", "serviceType": "Business Intelligence comercial com IA", "provider": { "@id": "https://www.levelupsales.com.br/#business" }, "description": "Estruturação de KPIs, funil de vendas e dashboards integrados ao CRM, com IA para gerar relatórios, insights e alertas automáticos. Visões Estratégico, Tático, Operacional, Receptivo, Pré-Venda e Propostas.", "areaServed": { "@type": "Country", "name": "Brasil" } } }
           ]
         },
         "knowsAbout": [
@@ -123,7 +124,10 @@
           "Inbound Sales", "Outbound Sales", "Sales Enablement",
           "Gestão de Canais", "Geração de Demanda", "Pipeline Management",
           "SaaS Sales", "Franquias", "Vendas B2B", "Vendas B2C",
-          "Sales Performance Management", "Sales KPIs"
+          "Sales Performance Management", "Sales KPIs",
+          "Sales Analytics", "Business Intelligence", "Dashboards Comerciais",
+          "Revenue Operations", "RevOps", "Integração de CRM",
+          "Inteligência Artificial Aplicada a Vendas"
         ],
         "employee": { "@id": "https://www.levelupsales.com.br/#person" },
         "founder": { "@id": "https://www.levelupsales.com.br/#person" },
@@ -714,8 +718,8 @@
     .servicos-section { background: var(--bg-0); border-top: 1px solid var(--border); }
     .servicos-section > .section-inner > h2 { margin-bottom: 16px; }
     .servicos-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 24px; margin-top: 56px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px; margin-top: 56px;
     }
     .servico-card {
       background: var(--bg-2); border: 1px solid var(--border);
@@ -733,6 +737,18 @@
       content: 'Mais contratado';
       position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
       background: var(--brand-light); color: #fff;
+      font-size: 11px; font-weight: 700; padding: 4px 14px;
+      border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .servico-card.novo {
+      border-color: var(--brand-border);
+      position: relative;
+    }
+    .servico-card.novo::before {
+      content: 'Novo';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #25D366; color: #fff;
       font-size: 11px; font-weight: 700; padding: 4px 14px;
       border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase;
       white-space: nowrap;
@@ -1514,6 +1530,24 @@
             <a href="https://wa.me/5547988421026?text=Quero%20saber%20mais%20sobre%20Treinamento%20de%20Time" class="btn btn-outline-brand" target="_blank" rel="noopener noreferrer" aria-label="Solicitar Treinamento de Time via WhatsApp">Solicitar treinamento</a>
           </div>
         </article>
+        <article class="servico-card novo">
+          <div class="servico-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4E4EC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/><circle cx="7" cy="14" r="1.4" fill="#4E4EC4" stroke="none"/><circle cx="11" cy="10" r="1.4" fill="#4E4EC4" stroke="none"/><circle cx="15" cy="14" r="1.4" fill="#4E4EC4" stroke="none"/><circle cx="20" cy="9" r="1.4" fill="#4E4EC4" stroke="none"/></svg>
+          </div>
+          <h3>Inteligência Comercial 360</h3>
+          <p>Estruturação de KPIs, funil e dashboards comerciais conectados ao seu CRM, com IA para gerar relatórios, insights e alertas automáticos. Decisão por dado, não por achismo.</p>
+          <ul class="servico-features" aria-label="O que está incluído">
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Funil em 5 níveis: leads, organizações, oportunidades, propostas e faturado</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Integração com o CRM existente (Gluo, Pipedrive, HubSpot, RD e outros)</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Visões Estratégico, Tático, Operacional, Receptivo, Pré-Venda e Propostas</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Win rate, ciclo de venda, cohort, motivos de perda e ticket médio</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Alertas automáticos e insights gerados por IA — gargalos, divergências e oportunidades</li>
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#4E4EC4" stroke-width="1.5" stroke-linecap="round"/></svg></span>Acesso seguro com autenticação e atualização em tempo real</li>
+          </ul>
+          <div class="servico-cta">
+            <a href="https://wa.me/5547988421026?text=Quero%20saber%20mais%20sobre%20Intelig%C3%AAncia%20Comercial%20360%20%E2%80%94%20KPIs%2C%20Dashboards%20e%20IA" class="btn btn-outline-brand" target="_blank" rel="noopener noreferrer" aria-label="Solicitar Inteligência Comercial 360 via WhatsApp">Conhecer o 360</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1711,6 +1745,7 @@
           <li><a href="#servicos">Diagnóstico Comercial</a></li>
           <li><a href="#servicos">Acompanhamento Contínuo</a></li>
           <li><a href="#servicos">Treinamento de Time</a></li>
+          <li><a href="#servicos">Inteligência Comercial 360</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2076,7 +2111,6 @@
         heroCta.dataset.listenerSet = '1';
       }
     }
-
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', registerListeners);
     } else {
@@ -2093,7 +2127,7 @@
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4E4EC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h3 id="success-title" style="font-size:22px;font-weight:800;margin-bottom:12px;color:var(--text-1);">Recebemos sua mensagem!</h3>
-      <p style="font-size:15px;color:var(--text-2);line-height:1.6;margin-bottom:28px;">Em até <strong style="color:var(--text-1);">24 horas úteis</strong> retornaremos seu contato. Se preferir adiantar, você pode <strong style="color:var(--text-1);">agendar um horário direto na agenda</strong> ou conversar agora pelo WhatsApp.</p>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.6;margin-bottom:28px;">Em até <strong style="color:var(--text-1);">24 horas úteis</strong> retornaremos seu contato. Se preferir adiantar, voce pode <strong style="color:var(--text-1);">agendar um horário direto na agenda</strong> ou conversar agora pelo WhatsApp.</p>
       <p style="font-size:14px;color:var(--text-2);margin-bottom:16px;font-weight:600;">Quer já agendar uma conversa?</p>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <a href="https://calendly.com/valdemar-levelupsales/new-meeting" id="success-calendly" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="justify-content:center;padding:14px 24px;font-size:15px;">
