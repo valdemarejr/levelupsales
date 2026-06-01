@@ -13,8 +13,26 @@
   <meta name="description" content="Consultoria comercial para PMEs, SaaS, franquias, indústria e educação em Joinville-SC. Diagnóstico, acompanhamento semanal e treinamento com SPIN Selling e JOLT. Conheça a Level Up Soluções." />
   <meta name="author" content="Valdemar Eleuterio Jr." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <meta name="googlebot" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="bingbot" content="index, follow" />
+  <meta name="yandex" content="index, follow" />
+  <meta name="duckduckbot" content="index, follow" />
+  <meta name="keywords" content="consultoria de vendas, consultor de vendas joinville, SPIN Selling, JOLT, venda consultiva, dashboards comerciais, KPIs de vendas, inteligência comercial, business intelligence vendas, treinamento de vendas, SaaS sales, franquias, gestão comercial, Joinville, Santa Catarina" />
+  <!-- AI crawlers metadata — para LLMs entenderem o contexto -->
+  <meta name="description-ai" content="Level Up Soluções é uma consultoria estratégica de vendas em Joinville-SC liderada por Valdemar Eleuterio Jr., com 15+ anos de experiência em SaaS, franquias, indústria, educação e agronegócio. Oferece Diagnóstico Comercial, Acompanhamento Contínuo, Treinamento de Time (SPIN Selling, JOLT) e Inteligência Comercial 360 (KPIs, dashboards e IA). Metodologia dos 6 Ps: Processo, Pitch, Pessoas, Produto, Promoção e Performance." />
   <link rel="canonical" href="https://www.levelupsales.com.br/" />
+  <!-- ═══ VERIFICAÇÕES DE BUSCADORES ═══
+       INSTRUÇÕES: Quando criar a propriedade em cada Webmaster Tool,
+       descomente a linha correspondente e cole o token recebido:
+       - Google: https://search.google.com/search-console (já verificado via DNS/Vercel)
+       - Bing:   https://www.bing.com/webmasters → meta tag
+       - Yandex: https://webmaster.yandex.com → meta tag
+       - Facebook: https://business.facebook.com/settings/owned-domains
+  <meta name="msvalidate.01" content="SEU_BING_TOKEN" />
+  <meta name="yandex-verification" content="SEU_YANDEX_TOKEN" />
+  <meta name="facebook-domain-verification" content="SEU_FB_TOKEN" />
+  -->
+
 
   <!-- ═══ GEO TAGS (SEO local) ═══ -->
   <meta name="geo.region" content="BR-SC" />
@@ -190,24 +208,58 @@
        Tag depois, migre para Google Tag Manager (GTM):
        https://tagmanager.google.com
   -->
-  <!-- ═══ MICROSOFT CLARITY — heatmaps e gravações de sessão ═══ -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wv2sujywjb");
-  </script>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX2ELXNH02"></script>
+  <!-- ═══ ANALYTICS COM CONSENT MANAGER (LGPD-compliant) ═══
+       GA4 e Microsoft Clarity SÓ carregam APÓS aceite do banner de cookies.
+       Antes do consent, gtag() existe (stub) e usa Google Consent Mode v2.
+  -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-DX2ELXNH02', {
-      anonymize_ip: true,
-      cookie_flags: 'SameSite=None;Secure'
+
+    // Google Consent Mode v2 — default DENIED até consent explícito do usuário
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
     });
+
+    // Carregamento condicional do GA4 e Clarity APÓS consent
+    function lu_loadAnalytics() {
+      if (window.__lu_analytics_loaded) return;
+      window.__lu_analytics_loaded = true;
+
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+
+      // Carrega GA4
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-DX2ELXNH02';
+      document.head.appendChild(ga);
+
+      gtag('config', 'G-DX2ELXNH02', {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+
+      // Carrega Microsoft Clarity
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "wv2sujywjb");
+    }
+
+    // Auto-carrega se já houver consent de sessão anterior
+    try {
+      if (localStorage.getItem('lu_cookie_consent') === 'accepted') {
+        lu_loadAnalytics();
+      }
+    } catch(_) {}
 
     // ─── REGISTRAR LISTENERS NO DOM (substitui inline handlers, mais robusto) ───
     function registerListeners() {
@@ -1782,9 +1834,8 @@
   <!-- ─── COOKIE BANNER (LGPD) ─── -->
   <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
     <p class="cookie-text">
-      Utilizamos cookies essenciais para o funcionamento do site. Seus dados pessoais inseridos no formulário são tratados exclusivamente para fins de contato comercial, conforme a
-      <a href="#" onclick="openPrivacy(event)">Lei Geral de Proteção de Dados (LGPD &mdash; Lei 13.709/2018)</a>.
-      Nenhum dado é compartilhado ou vendido a terceiros.
+      Usamos cookies essenciais para o funcionamento do site e, com o seu aceite, cookies de analytics (Google Analytics e Microsoft Clarity) para entender como o site é usado e melhorá-lo. Seus dados nunca são vendidos a terceiros. Saiba mais na nossa
+      <a href="#" onclick="openPrivacy(event)">Política de Privacidade &amp; LGPD</a>.
     </p>
     <div class="cookie-actions">
       <button class="cookie-btn cookie-btn-decline" id="cookie-decline" aria-label="Recusar cookies não essenciais">Apenas essenciais</button>
@@ -1797,37 +1848,61 @@
     <div class="modal-box">
       <button class="modal-close" onclick="closePrivacy()" aria-label="Fechar política de privacidade">&times;</button>
       <h3 id="privacy-title">Política de Privacidade &amp; LGPD</h3>
-      <p><strong>Level Up Soluções Ltda</strong> &mdash; CNPJ 59.954.779/0001-27<br />Rua Tico-Tico, 337 &mdash; Aventureiro<br/>Joinville &mdash; SC &mdash; CEP 89225-130 &mdash; valdemar@levelupsales.com.br</p>
+      <p><strong>Controlador dos dados:</strong> Level Up Soluções Ltda &mdash; CNPJ 59.954.779/0001-27<br />Rua Tico-Tico, 337 &mdash; Aventureiro &mdash; Joinville/SC &mdash; CEP 89225-130<br /><strong>Encarregado (DPO):</strong> Valdemar Eleuterio Jr. &mdash; <a href="mailto:valdemar@levelupsales.com.br" style="color:var(--brand-light)">valdemar@levelupsales.com.br</a></p>
 
-      <h4>1. Dados coletados</h4>
-      <p>Coletamos apenas os dados que você fornece voluntariamente pelo formulário de contato: nome, telefone/WhatsApp, nome da empresa e segmento de atuação. Não coletamos dados sensíveis conforme definido pela LGPD.</p>
+      <h4>1. Dados que coletamos</h4>
+      <p><strong>Dados fornecidos por você (formulário):</strong> nome, e-mail, telefone/WhatsApp, nome da empresa e segmento de atuação.</p>
+      <p><strong>Dados coletados automaticamente (só após seu aceite no banner de cookies):</strong> endereço IP anonimizado, tipo de dispositivo e navegador, páginas visitadas, tempo de permanência, origem do tráfego, interações com a página (cliques, scroll, mapa de calor).</p>
+      <p>Não coletamos dados sensíveis conforme o Art. 5º, II da LGPD (origem racial, convicção religiosa, opinião política, dados de saúde, vida sexual, dados genéticos ou biométricos).</p>
 
       <h4>2. Finalidade do tratamento</h4>
-      <p>Os dados coletados são utilizados exclusivamente para: (a) responder à sua solicitação de contato ou diagnóstico comercial; (b) enviar informações sobre serviços que você solicitou. Não utilizamos seus dados para marketing não solicitado.</p>
+      <p>Os dados coletados são utilizados para: (a) responder à sua solicitação de contato ou diagnóstico comercial; (b) enviar informações sobre serviços que você solicitou; (c) analisar o desempenho do site e melhorar a experiência de navegação (apenas após consentimento). <strong>Não utilizamos seus dados para marketing não solicitado nem os vendemos a terceiros.</strong></p>
 
-      <h4>3. Base legal (LGPD, Art. 7&ordm;)</h4>
-      <p>O tratamento ocorre com base no seu consentimento explícito (marcação da caixa de aceite no formulário) e no legítimo interesse para fins de atendimento comercial.</p>
+      <h4>3. Base legal (LGPD, Art. 7º)</h4>
+      <p><strong>Dados do formulário:</strong> consentimento explícito (caixa de aceite) e execução de procedimentos preliminares de contrato (Art. 7º, V).</p>
+      <p><strong>Dados de analytics e cookies não essenciais:</strong> consentimento explícito (Art. 7º, I), revogável a qualquer momento limpando os cookies do navegador.</p>
+      <p><strong>Dados técnicos essenciais (segurança):</strong> legítimo interesse (Art. 7º, IX) para garantir funcionamento e segurança do site.</p>
 
-      <h4>4. Compartilhamento</h4>
-      <p>Seus dados <strong>não são compartilhados, vendidos ou cedidos</strong> a terceiros. O contato ocorre diretamente via WhatsApp ou e-mail com a equipe Level Up Soluções.</p>
+      <h4>4. Operadores e processadores (sub-processadores)</h4>
+      <p>Os dados são tratados por nós (controlador) e podem ser processados pelos seguintes operadores estritamente para as finalidades descritas:</p>
+      <ul>
+        <li><strong>Vercel Inc.</strong> (EUA) &mdash; hospedagem e entrega do site (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:var(--brand-light)">política</a>)</li>
+        <li><strong>Formsubmit</strong> &mdash; processamento do formulário de contato (entrega de e-mail)</li>
+        <li><strong>Google LLC</strong> &mdash; Google Analytics 4 com IP anonimizado, somente após consentimento (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color:var(--brand-light)">política</a>)</li>
+        <li><strong>Microsoft Corporation</strong> &mdash; Microsoft Clarity (mapa de calor e gravações de sessão anonimizadas), somente após consentimento (<a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" style="color:var(--brand-light)">política</a>)</li>
+        <li><strong>Meta Platforms</strong> (WhatsApp Business) &mdash; quando você opta por iniciar uma conversa via botão de WhatsApp</li>
+        <li><strong>Calendly LLC</strong> &mdash; quando você opta por agendar uma reunião pela agenda integrada</li>
+      </ul>
+      <p>Alguns operadores estão sediados fora do Brasil; nesses casos, a transferência internacional ocorre conforme o Art. 33 da LGPD, com cláusulas contratuais e garantias adequadas dos provedores.</p>
 
-      <h4>5. Cookies</h4>
-      <p>Este site utiliza apenas cookies essenciais para funcionamento técnico. Não utilizamos cookies de rastreamento ou publicidade de terceiros.</p>
+      <h4>5. Cookies utilizados</h4>
+      <p><strong>Essenciais</strong> (sempre ativos): <code>lu_cookie_consent</code> — guarda sua preferência sobre cookies.</p>
+      <p><strong>Analytics e UX</strong> (só após você clicar em "Aceitar e continuar"): <code>_ga</code>, <code>_ga_*</code> (Google Analytics), <code>_clck</code>, <code>_clsk</code> (Microsoft Clarity). Você pode recusar clicando em "Apenas essenciais".</p>
 
       <h4>6. Seus direitos (LGPD, Art. 18)</h4>
       <ul>
         <li>Confirmação da existência de tratamento</li>
-        <li>Acesso, correção ou exclusão dos dados</li>
+        <li>Acesso, correção, anonimização ou exclusão dos dados</li>
         <li>Revogação do consentimento a qualquer momento</li>
-        <li>Portabilidade dos dados</li>
+        <li>Portabilidade dos dados a outro fornecedor</li>
+        <li>Informação sobre com quem compartilhamos seus dados</li>
+        <li>Oposição a tratamento baseado em legítimo interesse</li>
+        <li>Revisão de decisões automatizadas que afetem seus interesses</li>
       </ul>
-      <p style="margin-top:12px">Para exercer seus direitos, entre em contato: <a href="mailto:valdemar@levelupsales.com.br" style="color:var(--brand-light)">valdemar@levelupsales.com.br</a></p>
+      <p style="margin-top:12px">Para exercer qualquer direito, fale com o Encarregado pelo e-mail <a href="mailto:valdemar@levelupsales.com.br" style="color:var(--brand-light)">valdemar@levelupsales.com.br</a>. Retornamos em até 15 dias.</p>
 
       <h4>7. Retenção</h4>
-      <p>Os dados são mantidos enquanto houver relação comercial ativa ou até que você solicite a exclusão.</p>
+      <p>Dados do formulário: mantidos enquanto houver relação comercial ativa ou interesse mútuo no contato, e até <strong>5 anos</strong> após o último contato para cumprir obrigações fiscais e contratuais (CC, Art. 206), ou até que você solicite exclusão.</p>
+      <p>Dados de analytics: 14 meses (Google Analytics) e até 1 ano (Microsoft Clarity), conforme configuração dos serviços.</p>
 
-      <h4>8. Atualização</h4>
-      <p>Esta política pode ser atualizada. A versão vigente está sempre disponível nesta página. Última atualização: maio de 2026.</p>
+      <h4>8. Segurança</h4>
+      <p>Adotamos medidas técnicas e organizacionais para proteger seus dados: HTTPS com HSTS, Content Security Policy, proteção contra clickjacking, sanitização de inputs, e princípio do menor privilégio no acesso. Em caso de incidente que envolva risco a você, comunicaremos conforme o Art. 48 da LGPD.</p>
+
+      <h4>9. Reclamações</h4>
+      <p>Se entender que seus direitos não foram respeitados, você pode entrar em contato com a Autoridade Nacional de Proteção de Dados (ANPD) por <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer" style="color:var(--brand-light)">gov.br/anpd</a>.</p>
+
+      <h4>10. Atualização</h4>
+      <p>Esta política pode ser atualizada para refletir mudanças regulatórias ou de produto. A versão vigente está sempre disponível nesta página. <strong>Última atualização: 01 de junho de 2026.</strong></p>
     </div>
   </div>
 
@@ -2022,6 +2097,10 @@
     function setCookieConsent(choice) {
       try { localStorage.setItem('lu_cookie_consent', choice); } catch(e) {}
       document.getElementById('cookie-banner').classList.add('hidden');
+      // Se aceitou, carrega analytics agora
+      if (choice === 'accepted' && typeof lu_loadAnalytics === 'function') {
+        lu_loadAnalytics();
+      }
     }
     (function() {
       try {
@@ -2030,9 +2109,10 @@
       } catch(e) {}
     })();
 
+
     // ─── MODAL PRIVACIDADE ───
     function openPrivacy(e) {
-      if (e) e.preventDefault();
+      if (e && e.preventDefault) e.preventDefault();
       document.getElementById('privacy-modal').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -2044,15 +2124,20 @@
       if (e.target === document.getElementById('privacy-modal')) closePrivacy();
     }
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closePrivacy();
+      if (e.key === 'Escape') {
+        closePrivacy();
+        closeSuccessModal();
+      }
     });
 
     // ─── NAVBAR SCROLL ───
     (function() {
-      var nav = document.querySelector('nav');
-      window.addEventListener('scroll', function() {
-        nav.style.background = window.scrollY > 40 ? 'rgba(6,6,15,0.98)' : 'rgba(6,6,15,0.92)';
-      }, { passive: true });
+      var nav = document.querySelector('nav.site-nav');
+      if (nav) {
+        window.addEventListener('scroll', function() {
+          nav.style.background = window.scrollY > 40 ? 'rgba(6,6,15,0.98)' : 'rgba(6,6,15,0.92)';
+        }, { passive: true });
+      }
     })();
 
     // ─── REGISTRAR LISTENERS NO DOM ───
@@ -2127,7 +2212,7 @@
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4E4EC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h3 id="success-title" style="font-size:22px;font-weight:800;margin-bottom:12px;color:var(--text-1);">Recebemos sua mensagem!</h3>
-      <p style="font-size:15px;color:var(--text-2);line-height:1.6;margin-bottom:28px;">Em até <strong style="color:var(--text-1);">24 horas úteis</strong> retornaremos seu contato. Se preferir adiantar, voce pode <strong style="color:var(--text-1);">agendar um horário direto na agenda</strong> ou conversar agora pelo WhatsApp.</p>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.6;margin-bottom:28px;">Em até <strong style="color:var(--text-1);">24 horas úteis</strong> retornaremos seu contato. Se preferir adiantar, você pode <strong style="color:var(--text-1);">agendar um horário direto na agenda</strong> ou conversar agora pelo WhatsApp.</p>
       <p style="font-size:14px;color:var(--text-2);margin-bottom:16px;font-weight:600;">Quer já agendar uma conversa?</p>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <a href="https://calendly.com/valdemar-levelupsales/new-meeting" id="success-calendly" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="justify-content:center;padding:14px 24px;font-size:15px;">
@@ -2144,5 +2229,6 @@
       </div>
     </div>
   </div>
+
 </body>
 </html>

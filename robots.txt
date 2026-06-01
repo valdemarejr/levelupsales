@@ -1,35 +1,161 @@
 # robots.txt — Level Up Soluções
 # https://www.levelupsales.com.br/
+# Última atualização: 2026-06-01
 
+# ============================================================
+# REGRA GERAL — PERMITE TODOS OS CRAWLERS LEGÍTIMOS
+# ============================================================
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /*.json$
+Disallow: /_preview/
 
-# Bloqueia bots de scraping conhecidos e LLMs (opcional — remova se quiser indexação por IA)
+# ============================================================
+# BUSCADORES TRADICIONAIS
+# ============================================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# Microsoft Bing
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# Yandex (Russia)
+User-agent: Yandex
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu (China)
+User-agent: Baiduspider
+Allow: /
+
+# Apple (Siri, Spotlight)
+User-agent: Applebot
+Allow: /
+
+# ============================================================
+# CRAWLERS DE IA (LLMs) — PERMITIDOS PARA INDEXAÇÃO
+# Objetivo: aparecer em respostas de ChatGPT, Claude, Gemini,
+# Perplexity, Copilot, etc.
+# ============================================================
+
+# OpenAI (ChatGPT — treinamento)
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
+# OpenAI (busca em tempo real)
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI (navegacao para o usuario)
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
-User-agent: CCBot
-Disallow: /
-
+# Anthropic (Claude — treinamento)
 User-agent: anthropic-ai
 Allow: /
 
+# Anthropic (Claude — crawler ativo)
 User-agent: ClaudeBot
 Allow: /
 
+# Anthropic (Claude — busca em tempo real)
+User-agent: Claude-Web
+Allow: /
+
+# Google (Gemini, Bard — corpus de treinamento)
 User-agent: Google-Extended
 Allow: /
 
+# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 
-# Crawl-delay padrão (segundos)
+User-agent: Perplexity-User
+Allow: /
+
+# Common Crawl (alimenta muitos LLMs)
+User-agent: CCBot
+Allow: /
+
+# Meta AI (Llama, Meta AI Assistant)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Mistral AI
+User-agent: MistralAI-User
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# Amazonbot (Alexa, AWS Bedrock)
+User-agent: Amazonbot
+Allow: /
+
+# Bytespider (TikTok / Doubao)
+User-agent: Bytespider
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# ============================================================
+# REDES SOCIAIS — Previews de link (Open Graph)
+# ============================================================
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# ============================================================
+# CRAWL-DELAY E SITEMAP
+# ============================================================
+
 Crawl-delay: 1
 
-# Sitemap
 Sitemap: https://www.levelupsales.com.br/sitemap.xml
