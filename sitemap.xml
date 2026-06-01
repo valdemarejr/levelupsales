@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.levelupsales.com.br/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -11,12 +8,12 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.levelupsales.com.br/og-image.png</image:loc>
-      <image:title>Level Up Soluções — Consultoria Estratégica de Vendas</image:title>
+      <image:title>Level Up Solucoes - Consultoria Estrategica de Vendas</image:title>
       <image:caption>Consultoria comercial em Joinville-SC. SPIN Selling, JOLT e acompanhamento semanal.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.levelupsales.com.br/logo.png</image:loc>
-      <image:title>Logo Level Up Soluções</image:title>
+      <image:title>Logo Level Up Solucoes</image:title>
     </image:image>
   </url>
   <url>
@@ -26,7 +23,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.levelupsales.com.br/valdemar.jpg</image:loc>
-      <image:title>Valdemar Eleuterio Jr. — Consultor responsável pela Level Up Soluções</image:title>
+      <image:title>Valdemar Eleuterio Jr. - Consultor responsavel pela Level Up Solucoes</image:title>
     </image:image>
   </url>
 </urlset>
