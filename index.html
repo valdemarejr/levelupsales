@@ -853,6 +853,79 @@
     .depo-info h4 { font-size: 14px; font-weight: 700; }
     .depo-info p { font-size: 12px; color: var(--text-3); }
 
+    /* ─── DEPOIMENTO ÚNICO EM DESTAQUE ─── */
+    .depo-featured-wrap { max-width: 760px; margin: 0 auto; }
+    .depo-featured {
+      background: var(--bg-2);
+      border: 1px solid var(--brand-border);
+      border-radius: var(--radius-lg);
+      padding: 48px 44px;
+      position: relative;
+    }
+    .depo-featured::before {
+      content: '\201C';
+      position: absolute;
+      top: 18px; left: 32px;
+      font-family: Georgia, serif;
+      font-size: 96px;
+      line-height: 1;
+      color: var(--brand-light);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .depo-featured .depo-stars { margin-bottom: 24px; }
+    .depo-featured .depo-text {
+      font-size: 17px;
+      line-height: 1.72;
+      color: var(--text-1);
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+    .depo-featured .depo-text + .depo-text { margin-top: -4px; }
+    .depo-featured .depo-author {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .depo-featured .depo-avatar {
+      width: 52px; height: 52px; font-size: 16px;
+      background: var(--brand-light);
+    }
+    .depo-featured .depo-info h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .depo-featured .depo-info p { font-size: 13px; color: var(--text-2); }
+    .depo-verified {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700;
+      color: var(--brand-light);
+      background: var(--brand-pale);
+      border: 1px solid var(--brand-border);
+      padding: 5px 11px; border-radius: 100px;
+      letter-spacing: 0.04em;
+      margin-left: auto;
+      text-decoration: none;
+      transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.18s;
+    }
+    a.depo-verified:hover {
+      background: rgba(78,78,196,0.18);
+      border-color: var(--brand-light);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    a.depo-verified:focus-visible {
+      outline: 2px solid var(--brand-light);
+      outline-offset: 2px;
+    }
+    @media (max-width: 640px) {
+      .depo-featured { padding: 36px 26px; }
+      .depo-featured::before { font-size: 72px; left: 20px; top: 12px; }
+      .depo-featured .depo-text { font-size: 15.5px; }
+      .depo-verified { margin-left: 0; margin-top: 8px; }
+      .depo-featured .depo-author { flex-wrap: wrap; }
+    }
+
     /* ─── CTA FINAL ─── */
     .cta-section {
       background: var(--brand-deeper);
@@ -1560,11 +1633,11 @@
   <!-- ─── DEPOIMENTOS ─── -->
   <section class="depoimentos-section" id="depoimentos" aria-labelledby="dep-title">
     <div class="section-inner">
-      <span class="section-label">Cases</span>
-      <h2 id="dep-title">O que dizem nossos<br />clientes</h2>
-      <p class="section-desc">Resultados de empresas que escolheram evoluir o time de vendas com método. Identidade preservada por acordo de confidencialidade.</p>
-      <div class="depoimentos-grid">
-        <blockquote class="depo-card">
+      <span class="section-label">Case</span>
+      <h2 id="dep-title">O que diz quem<br />trabalhou com a gente</h2>
+      <p class="section-desc">Um depoimento real de um cliente que viveu a metodologia na prática. Novos cases serão publicados conforme forem autorizados.</p>
+      <div class="depo-featured-wrap">
+        <blockquote class="depo-featured">
           <div class="depo-stars" aria-label="5 estrelas">
             <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1572,47 +1645,19 @@
             <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <p class="depo-text">"Em 8 semanas de acompanhamento, nossa taxa de conversão no funil aumentou significativamente. A Level Up entrou na operação de verdade, não ficou só no relatório."</p>
+          <p class="depo-text">O grande diferencial foi a implementação de <strong>Inside Sales no mercado químico</strong>, um segmento onde esse modelo ainda é pouco explorado. Estruturamos um processo comercial muito mais organizado, mensurável e eficiente.</p>
+          <p class="depo-text">Passamos a acompanhar toda a jornada de vendas de forma clara e estratégica, da prospecção à análise dos motivos de rejeição de cada cotação. Isso nos permitiu corrigir rotas com agilidade, aumentar a assertividade comercial e fortalecer a recorrência nas vendas.</p>
+          <p class="depo-text">Mais do que uma mentoria, foi uma verdadeira transformação na forma como enxergamos e conduzimos nosso processo comercial. Recomendo fortemente pela capacidade de gerar resultado real e conduzir mudanças que impactam diretamente o crescimento e a maturidade da operação.</p>
           <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">LU</div>
+            <div class="depo-avatar" aria-hidden="true">RT</div>
             <div class="depo-info">
-              <h4>Gestor Comercial</h4>
-              <p>Serviços B2B &mdash; Santa Catarina</p>
+              <h4>Reinaldo da Silva Tosti</h4>
+              <p>Gerente Comercial &middot; Nutriplant &mdash; Indústria Química e Fertilizantes</p>
             </div>
-          </footer>
-        </blockquote>
-        <blockquote class="depo-card">
-          <div class="depo-stars" aria-label="5 estrelas">
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="depo-text">"O diferencial é o acompanhamento individual. Cada vendedor evoluiu de forma diferente, com plano próprio. Isso é o que faz a diferença no dia a dia da operação."</p>
-          <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">LU</div>
-            <div class="depo-info">
-              <h4>Head de Vendas</h4>
-              <p>SaaS B2B &mdash; Brasil</p>
-            </div>
-          </footer>
-        </blockquote>
-        <blockquote class="depo-card">
-          <div class="depo-stars" aria-label="5 estrelas">
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="depo-text">"Finalmente um consultor que fala a língua do meu time. Metodologia prática, sem enrolação. E os números provam isso toda semana."</p>
-          <footer class="depo-author">
-            <div class="depo-avatar" aria-hidden="true">LU</div>
-            <div class="depo-info">
-              <h4>Diretor Comercial</h4>
-              <p>Franqueadora &mdash; Sul do Brasil</p>
-            </div>
+            <a href="https://www.linkedin.com/in/reinaldo-da-silva-tosti-841bb196/" class="depo-verified" target="_blank" rel="noopener noreferrer" aria-label="Verificar perfil do Reinaldo no LinkedIn">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              Verificar no LinkedIn
+            </a>
           </footer>
         </blockquote>
       </div>
